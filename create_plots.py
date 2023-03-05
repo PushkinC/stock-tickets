@@ -5,13 +5,13 @@ import pandas as pd
 
 
 
-with open('model.pkl', 'rb') as file:
+with open('model.pkl', 'rb') as file: # Закрузка модели
     model = pickle.load(file)
 
 d100 = pd.read_csv('static/csv/d100.csv')
 
 
-def save_plot_by_name(name):
+def save_plot_by_name(name): # Создание графика цен
     fig = plt.figure(figsize=(12, 5))
     plt.plot([i for i in range(len(d100[name]))], d100[name])
     plt.fill_between([i for i in range(len(d100[name]))], d100[name])
@@ -31,7 +31,7 @@ def predict(col, k):  # предсказание акции name моделью 
     return ans
 
 
-def save_predict_by_name(name):
+def save_predict_by_name(name): # Создание графика предсказанных цен
     fig = plt.figure(figsize=(12, 5))
     plt.plot([i for i in range(len(d100[name]))], d100[name][10:70].to_list() + predict(d100[name][70:], 10))
     plt.fill_between([i for i in range(90)], d100[name][10:].to_list())

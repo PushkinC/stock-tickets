@@ -5,6 +5,11 @@ import pandas as pd
 import atexit
 import os
 import create_plots
+import warnings
+
+
+warnings.filterwarnings("ignore")
+
 
 app = Flask(__name__)
 
@@ -13,23 +18,22 @@ HOST = '127.0.0.1'
 
 @app.route('/')
 @app.route('/index')
-def index():
-    global PORT, HOST
+def index(): # Страница с графиками
     tablo = []
     buy = []
     sale = []
     try:
-        with open('static/csv/tablo.csv', 'r') as f:
+        with open('static/csv/tablo.csv', 'r') as f: # Формирую данные для табло
             reader = csv.reader(f)
             for row in reader:
                 tablo.append(row)
 
-        with open('static/csv/buy.csv', 'r') as f:
+        with open('static/csv/buy.csv', 'r') as f: # Формирую данные для покупки
             reader = csv.reader(f)
             for row in reader:
                 buy.append(row)
 
-        with open('static/csv/sale.csv', 'r') as f:
+        with open('static/csv/sale.csv', 'r') as f: # Формирую данные для продажи
             reader = csv.reader(f)
             for row in reader:
                 sale.append(row)
@@ -44,14 +48,13 @@ def index():
         print('Я в открытии данных для таблиц!!!!!!')
 
 
-    return render_template('index.html', tablo=tablo, buy=buy, sale=sale,
-                           host=HOST, port=PORT)
+    return render_template('index.html', tablo=tablo, buy=buy, sale=sale)
 
 
 
 
 
-def create_HHTP_tablet(name):
+def create_HHTP_tablet(name): # Функция подготавливающая данные для HTML графика
     d100 = pd.read_csv('static/csv/d100.csv')
     data = []
     diff = []
@@ -67,10 +70,10 @@ def create_HHTP_tablet(name):
 
 
 @app.route('/ticket/<name>')
-def ticket(name):
-    data, diff = create_HHTP_tablet(name)
-    create_plots.save_plot_by_name(name)
-    create_plots.save_predict_by_name(name)
+def ticket(name): # Главная страница
+    data, diff = create_HHTP_tablet(name) # Подготовка данных для HTTP графика
+    create_plots.save_plot_by_name(name) # Создание графика цен
+    create_plots.save_predict_by_name(name) # Создание графика предсказанных цен
 
     return render_template('ticket.html', name=name, data=data, diff=diff)
 
@@ -82,10 +85,10 @@ def goodbye():
 
     f = os.listdir(path)
     for i in f:
-        os.remove(path + '/' + i)
+        os.remove(path + '/' + i) # Удаление графиков
 
 
-atexit.register(goodbye)
+atexit.register(goodbye) # Перехват выхода из приложения
 
 
 
