@@ -42,6 +42,13 @@ def index(): # Страница с графиками
         buy = buy[1:]
         sale = sale[1:]
 
+        for i, e in enumerate(buy):
+            buy[i] = [e[0], e[1], str(round(float(e[2]), 2))]
+
+        for i, e in enumerate(sale):
+            sale[i] = [e[0], e[1], str(round(float(e[2]), 2))]
+
+
 
     except Exception as ex:
         print(ex)
@@ -94,18 +101,10 @@ atexit.register(goodbye) # Перехват выхода из приложени
 
 
 if __name__ == '__main__':
-    ch = True
-    while ch:
-        a = input('Обновить данные?(y/n) ')
-        if a == 'y':
-            import parser
-            import recommendation
-            ch = False
-        elif a == 'n':
-            ch = False
-        else:
-            print('Не понял, повторите!')
-    app.run(port=8080, host='127.0.0.1')
+    # import parser
+    # import recommendation
+    print('asdasdasd')
+    app.run(port=8080, host='0.0.0.0')
 
 
 
