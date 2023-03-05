@@ -107,6 +107,8 @@ if __name__ == '__main__':
     app.run(port=8080, host='0.0.0.0')
 
 
+# docker tag local-image:tagname new-repo:tagname
+# docker push new-repo:tagname
 
 
 
