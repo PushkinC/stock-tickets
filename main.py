@@ -101,8 +101,8 @@ atexit.register(goodbye) # Перехват выхода из приложени
 
 
 if __name__ == '__main__':
-    # import parser
-    # import recommendation
+    import parser
+    import recommendation
     print('asdasdasd')
     app.run(port=8080, host='0.0.0.0')
 
