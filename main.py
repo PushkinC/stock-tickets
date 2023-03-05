@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import atexit
 import os
+import create_plots
 
 app = Flask(__name__)
 
@@ -46,25 +47,34 @@ def index():
     return render_template('index.html', tablo=tablo, buy=buy, sale=sale,
                            host=HOST, port=PORT)
 
+
+
+
+
+def create_HHTP_tablet(name):
+    d100 = pd.read_csv('static/csv/d100.csv')
+    data = []
+    diff = []
+    last = 0
+    for i, e in enumerate(d100[name]):
+        if i == 0:
+            diff.append([i, 0])
+        else:
+            diff.append([i, e - last])
+        data.append([i, e])
+        last = e
+    return data, diff
+
+
 @app.route('/ticket/<name>')
 def ticket(name):
+    data, diff = create_HHTP_tablet(name)
+    create_plots.save_plot_by_name(name)
+    create_plots.save_predict_by_name(name)
 
-    save_plot_by_name(name)
-
-    return render_template('ticket.html', name=name)
+    return render_template('ticket.html', name=name, data=data, diff=diff)
 
 
-
-d100 = pd.read_csv('static/csv/d100.csv')
-
-def save_plot_by_name(name):
-    fig = plt.figure(figsize=(12, 5))
-    plt.plot([i for i in range(len(d100[name]))], d100[name])
-    plt.fill_between([i for i in range(len(d100[name]))], d100[name])
-    plt.legend()
-    plt.title(name)
-    plt.savefig(f'static/Pictures/temp/{name}.png')
-    plt.savefig(f'static/Pictures/temp/{name}1.png')
 
 
 def goodbye():
@@ -81,6 +91,11 @@ atexit.register(goodbye)
 
 
 if __name__ == '__main__':
+    if input() == 'yes':
+        import parser
+
+    if input() == 'yes':
+        import recommendation
     app.run(port=8080, host='127.0.0.1')
 
 

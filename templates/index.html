@@ -45,7 +45,7 @@
     <div class="second-block">
         <h2 class="green-text">Рекомендуем к покупке!</h2>
         <table>
-            <tr><th>Тикер</th><th>Последняя цена</th><th>?особенность?</th></tr>
+            <tr><th>Тикер</th><th>Последняя цена</th><th>%</th></tr>
             {% for i in buy %}
                 <tr><td><a class="tablo-link" href="/ticket/{{i[0]}}">{{i[0]}}</a></td><td>{{i[1]}}</td><td>{{i[2]}}</td></tr>
             {% endfor %}
@@ -55,7 +55,7 @@
     <div class="second-block">
         <h2 class="red-text">Рекомендуем к продаже!</h2>
         <table>
-            <tr><th>Тикер</th><th>Последняя цена</th><th>?особенность?</th></tr>
+            <tr><th>Тикер</th><th>Последняя цена</th><th>%</th></tr>
             {% for i in sale %}
                 <tr><td><a class="tablo-link" href="/ticket/{{i[0]}}">{{i[0]}}</a></td><td>{{i[1]}}</td><td>{{i[2]}}</td></tr>
             {% endfor %}
