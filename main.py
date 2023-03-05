@@ -94,11 +94,17 @@ atexit.register(goodbye) # Перехват выхода из приложени
 
 
 if __name__ == '__main__':
-    if input() == 'yes':
-        import parser
-
-    if input() == 'yes':
-        import recommendation
+    ch = True
+    while ch:
+        a = input('Обновить данные?(y/n) ')
+        if a == 'y':
+            import parser
+            import recommendation
+            ch = False
+        elif a == 'n':
+            ch = False
+        else:
+            print('Не понял, повторите!')
     app.run(port=8080, host='127.0.0.1')
 
 
