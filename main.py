@@ -92,7 +92,8 @@ def goodbye():
 
     f = os.listdir(path)
     for i in f:
-        os.remove(path + '/' + i) # Удаление графиков
+        if i not in 'чтоб была папка':
+            os.remove(path + '/' + i) # Удаление графиков
 
 
 atexit.register(goodbye) # Перехват выхода из приложения
