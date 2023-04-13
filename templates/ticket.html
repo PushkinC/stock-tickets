@@ -18,67 +18,6 @@
 
     <title>{{name}}</title>
 
-    <style>
-        .example-container {
-            margin-right: auto;
-            margin-left: auto;
-            max-width: 50vw;
-            height: 600px;
-        }
-
-        .plot {
-            background-color: white;
-        }
-    </style>
-
-    <style>
-        .y2Axis .dvx-chart-axis-main-line {
-            stroke: #FCB441;
-        }
-
-        .y2Axis .dvx-chart-axis-major-tick-mark {
-            stroke: #FCB441;
-        }
-
-        .y2Axis .dvx-chart-axis-major-grid-line {
-            stroke: #FCB441;
-        }
-    </style>
-    <script lang="javascript" type="text/javascript">
-        var chart = new dvxCharts.Chart({
-            title: {
-                text: 'Assigning Axis'
-            },
-            animation: {
-                duration: 1
-            },
-            axes: [
-                {
-                    name: 'y1',
-                    location: 'left'
-                },
-                {
-                    name: 'y2',
-                    location: 'right',
-                    class: 'y2Axis'
-                }
-            ],
-            series: [
-                {
-                    type: 'column',
-                    axisY: 'y1',
-                    data: {{diff}}
-                },
-                {
-                    type: 'line',
-                    axisY: 'y2',
-                    data: {{data}}
-                }
-            ]
-        });
-        chart.write('container');
-    </script>
-
 </head>
 <body>
     <h2>График колебания цены за последние 100 дней</h2>

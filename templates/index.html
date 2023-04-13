@@ -12,6 +12,14 @@
     <title>Choose Ticket</title>
 </head>
 <body>
+    <div class="user">
+        Пользователь: <span class="name">{{ user }}</span>
+        {% if user == 'Аноним' %}
+        <a href="/login" class="out" style="float: right">Войти</a>
+        {% else %}
+        <a href="/login" class="out" style="float: right">Выйти</a>
+        {% endif %}
+    </div>
     <h1>На бирже сегодня лёгкий бриз!</h1>
     <div class="tablo-block">
         <table>
@@ -40,26 +48,36 @@
     </div>
 
 
-
-
     <div class="second-block">
         <h2 class="green-text">Рекомендуем к покупке!</h2>
+        {% if user != 'Аноним' %}
         <table>
             <tr><th>Тикер</th><th>Последняя цена</th><th>%</th></tr>
             {% for i in buy %}
                 <tr><td><a class="tablo-link" href="/ticket/{{i[0]}}">{{i[0]}}</a></td><td>{{i[1]}}</td><td>{{i[2]}}</td></tr>
             {% endfor %}
         </table>
+        {% else %}
+        <div style="background-color: rgb(128, 128, 128, 0.7); padding: 4vw">
+            <span style="color: white">Вы должны войти, чтобы видеть наши прогнозы!</span>
+        </div>
+        {% endif %}
     </div>
 
     <div class="second-block">
         <h2 class="red-text">Рекомендуем к продаже!</h2>
+         {% if user != 'Аноним' %}
         <table>
             <tr><th>Тикер</th><th>Последняя цена</th><th>%</th></tr>
             {% for i in sale %}
                 <tr><td><a class="tablo-link" href="/ticket/{{i[0]}}">{{i[0]}}</a></td><td>{{i[1]}}</td><td>{{i[2]}}</td></tr>
             {% endfor %}
         </table>
+        {% else %}
+        <div style="background-color: rgb(128, 128, 128, 0.7); padding: 4vw">
+            <span style="color: white">Вы должны войти, чтобы видеть наши прогнозы!</span>
+        </div>
+        {% endif %}
     </div>
 
 
@@ -68,10 +86,9 @@
 
 <footer>
     <span class="fot">
-        Это приложение создано для хакатона ФИНТЕХ<br>
-        командой Бирженосцы<br>
-        Разработчик: Симонов Виталий Сергеевич<br>
-        Дизайн: Золотарев Данил Егорович<br>
+        Это WEB-проект для Яндекс Лицея<br>
+        Разработчик: Золотарев Данил Егорович<br>
+        Руководитель: Симонов Сергей Иванович<br>
         E-mail: zolotarev_d_e@mail.ru<br>
         Телефон: 8(968)-434-95-65<br>
         Г.о. Электросталь<br>

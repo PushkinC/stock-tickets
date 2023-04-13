@@ -17,7 +17,7 @@ body{
 }
 
 h1{
-    padding-top: 70px;
+    padding-top: 20px;
     text-align: center;
     color: khaki;
     font-size: 4vw;
@@ -117,4 +117,21 @@ asd {
 .tablo-link {
     text-decoration: none;
     color: cyan;
+}
+
+.user {
+    padding-top: 20px;
+    padding-left: 10px;
+    color: yellow;
+    font-size: 3vw;
+    font-family: 'Comfortaa' courcive;
+}
+
+.name {
+    color: lime;
+}
+
+.out {
+    text-decoration: none;
+    color: Salmon;
 }
