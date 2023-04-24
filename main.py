@@ -114,6 +114,7 @@ def register():
 @app.route('/login', methods=['post', 'get'])
 def login():
     global cur_user
+    cur_user = 'Аноним'
     message = ''
     if request.method == 'POST':
         mail = request.form.get('mail')
@@ -149,9 +150,9 @@ def valid_pass_and_mail(name, mail, password, password2) -> str:
         if not any([x in password for x in string.digits]) or not any(
                 [x in password for x in string.ascii_letters]) or len(password) < 5:
             if message != '':
-                message = 'Неверные почта и пароль'
+                message = 'Неверные почта и пароль слишком лёгкий'
             else:
-                message = 'Неверный пароль'
+                message = 'Пароль слишком лёгкий'
     else:
         message = 'Пароли не совпадают'
 
